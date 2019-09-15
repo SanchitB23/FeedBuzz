@@ -1,0 +1,20 @@
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo"/>
+          <p>YO</p>
+        </div>
+        <p className="App-intro">
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a href="/auth/google">Sign In with Google</a>
+      </div>
+  );
+}
+
+export default App;
