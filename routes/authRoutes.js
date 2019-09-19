@@ -10,12 +10,14 @@ module.exports = (app) => {
       }));
 
   //info Callbacks for Google OAuth
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
+    res.redirect('/surveys');
+  });
 
   //Logout (All)
   app.get('/api/logout', (req, res) => {
     req.logout();
-    res.send(req.user)
+    res.redirect('/')
   });
   // INFO Gets Info of Current user (in JSON)
   app.get('/api/current_user', (req, res) => {

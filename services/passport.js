@@ -18,21 +18,17 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use('google', new GoogleStrategy({
-  clientID: keys.googleClientID,
-  clientSecret: keys.googleClientSecret,
-  callbackURL: '/auth/google/callback',
-  proxy: true
-}, async (accessToken, refreshToken, profile, done) => {
-  // console.log("\naccess Token: \n", accessToken + "\n\nRefresh Token", refreshToken, "\n\nProfile: \n" + profile, +"\n\nDone: \n" + done);
-  User.findOne({googleId: profile.id})
-      .then(existingUser => {
-        if (!existingUser)
-          new User({googleId: profile.id, createdAt: Date.now()}).save()
-              .then(user => done(null, user));
-        else {
-          console.log("User Exists");
-          done(null, existingUser)
-        }
-      })
-      .catch(error => console.error(error))
-}));
+      clientID: keys.googleClientID,
+      clientSecret: keys.googleClientSecret,
+      callbackURL: '/auth/google/callback',
+      proxy: true
+    }, async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({googleId: profile.id});
+      if (!existingUser) {
+        const user = await new User({googleId: profile.id, createdAt: Date.now()}).save();
+        return done(null, user);
+      }
+      console.log("User Exists");
+      done(null, existingUser)
+    })
+);
