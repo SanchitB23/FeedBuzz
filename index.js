@@ -2,17 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-require("./models/User"); //Loads the config
-require("./services/passport");
+const bodyParser = require('body-parser');
 const {cookieKey} = require("./config/keys");
 const {mongoURI} = require("./config/keys");
+require("./models/User"); //Loads the config
+require("./services/passport");
 
 mongoose.connect(mongoURI, {useNewUrlParser: true})
     .then(() => console.log("Mongo Connected"))
     .catch(e => console.log("Mongo Error", e));
 
 const app = express();
-
+app.use(bodyParser.json());
 app.use(
     cookieSession({
       maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -23,6 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require("./routes/authRoutes")(app); //??
+require('./routes/billingRoutes')(app);
 
 
 /* app.get('/', (req, res) => {

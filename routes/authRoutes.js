@@ -19,6 +19,7 @@ module.exports = (app) => {
     req.logout();
     res.redirect('/')
   });
+
   // INFO Gets Info of Current user (in JSON)
   app.get('/api/current_user', (req, res) => {
     //temp res.send(req.session); 

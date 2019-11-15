@@ -12,7 +12,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
   }
-
+//idea Add user login check to redirect to landing or survey page
   render() {
     return (
         <div className="container">
@@ -30,5 +30,5 @@ class App extends Component {
 }
 
 export default connect(
-    mapStateToProps, {fetchUser}
+    '', {fetchUser}
 )(App);
