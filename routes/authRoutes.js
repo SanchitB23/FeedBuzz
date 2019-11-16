@@ -22,7 +22,7 @@ module.exports = (app) => {
 
   // INFO Gets Info of Current user (in JSON)
   app.get('/api/current_user', (req, res) => {
-    //temp res.send(req.session); 
+    //temp res.send(req.session);
     res.send(req.user)
-  })
+  });
 };
