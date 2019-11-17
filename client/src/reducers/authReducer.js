@@ -1,4 +1,4 @@
-import {FETCH_USER} from "../actions/types";
+import {FETCH_USER} from "../utils/actionTypes";
 
 export default function (state = null, {type, payload}) {
   if (type === FETCH_USER) {
