@@ -13,7 +13,6 @@ class App extends Component {
     this.props.fetchUser();
   }
 
-//idea Add user login check to redirect to landing or survey page
   render() {
     return (
         <BrowserRouter>

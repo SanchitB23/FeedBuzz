@@ -9,11 +9,10 @@ class StripeWrapper extends Component {
   }
 
   render() {
-    // todo Change this us dollar to Rupee
     return (
         <StripeCheckout
             name={"FeedBuzz"}
-            description={"₹1 for 10 Credits"}
+            description={"₹1 for 5 Credits"}
             amount={100}
             currency="INR"
             token={(token) =>

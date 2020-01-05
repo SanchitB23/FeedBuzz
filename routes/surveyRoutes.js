@@ -14,12 +14,12 @@ const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 
 module.exports = (app) => {
-  //idea Can be changed : Currently this is after the user responded function
+  //idea Can be changed : Currently this is after the user responded function / beautify | Use HTML CSS
   app.get('/api/surveys/thanks', (req, res) => {
     console.log(req);
     res.send('Thank you for your response')
   });
-  app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => { //fixme require credits not working, number goes negative
+  app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => { //todo show error on UI if low credits
     const {title, subject, body, recipients} = req.body;
 
     const survey = new Survey({
@@ -28,7 +28,7 @@ module.exports = (app) => {
       body,
       recipients: recipients.split(',').map(email => ({email: email.trim()})),
       _user: req.user.id,
-      dateSent: Date.now() //idea for Creating draft this needs to be changes
+      dateSent: Date.now()//Date.now() //idea for Creating draft this needs to be changes
     });
 
     const mailer = new Mailer(survey, surveyTemplate(survey));

@@ -12,7 +12,7 @@ class Header extends Component {
 // FIXED_fixme After Payment it shows as logged out - CWU in StripeWrapper
   renderContent() {
     switch (this.props.auth) {
-      case null:
+      case null: //todo loading animation or something
         return;
       case false:
         return <li><a href="/auth/google">Login With Google</a></li>;

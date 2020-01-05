@@ -20,9 +20,8 @@ module.exports = (app) => {
     res.redirect('/')
   });
 
-  // INFO Gets Info of Current user (in JSON)
+  //  Gets Info of Current user (in JSON)
   app.get('/api/current_user', (req, res) => {
-    //temp res.send(req.session);
     res.send(req.user)
   });
 };

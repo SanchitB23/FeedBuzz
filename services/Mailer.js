@@ -6,7 +6,7 @@ class Mailer extends helper.Mail {
   constructor({subject, recipients}, content) {
     super();
     this.sendGridAPI = sendGrid(keys.sendGridKey);
-    this.from_email = new helper.Email('no-reply@feedbuzz.com');
+    this.from_email = new helper.Email('no-reply@feedbuzz-project.herokuapp.com');
     this.subject = subject;
     this.body = new helper.Content('text/html', content);
     this.recipients = this.formatAddresses(recipients);
@@ -36,13 +36,13 @@ class Mailer extends helper.Mail {
     this.addPersonalization(personalize);
   }
 
-  async send() {
+  async send() { //DONEfixme error when sending to google IDs etc
     const request = this.sendGridAPI.emptyRequest({
       method: 'POST',
       path: '/v3/mail/send',
       body: this.toJSON()
     });
-    return await this.sendGridAPI.API(request); //question
+    return await this.sendGridAPI.API(request); //Converts all this.<vars> to JSON and uses our sendGridAPI to send it
   }
 
 }
