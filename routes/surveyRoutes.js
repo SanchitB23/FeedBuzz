@@ -15,14 +15,14 @@ const Survey = mongoose.model('surveys');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 
+
 module.exports = (app) => {
 
 
   //idea Can be changed : Currently this is after the user responded function / beautify | Use HTML CSS | Use res.redirect ->ref authRoutes
-  app.get('api/surveys/:surveyId/:choice', (req, res) => {
-    console.log(req);
-    console.log('get response');
-    res.redirect('surveys/thanks'); //fixme
+  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
+    console.log("something");
+    res.send('working'); //fixme
   });
 
 
@@ -79,8 +79,6 @@ module.exports = (app) => {
         })
         .value();
     console.log(event);
-    console.log('post response');
-    result.send('Thanks')
   });
 
 
