@@ -6,6 +6,8 @@ import {fetchUser} from "../actions";
 import LandingPage from "./LandingPage";
 import Dashboard from "./Dashboard";
 import SurveyNew from "./surveys/SurveyNew";
+import FeedbackResponsePage from "./surveys/FeedbackResponsePage";
+
 
 // todo HTML File fix
 class App extends Component {
@@ -21,6 +23,7 @@ class App extends Component {
             <Route exact path="/" component={LandingPage.bind(this)}/>
             <Route exact path="/surveys" component={Dashboard}/>
             <Route exact path="/surveys/new" component={SurveyNew}/>
+            <Route exact path="/surveys/thanks" component={FeedbackResponsePage}/>
           </div>
         </BrowserRouter>
     );

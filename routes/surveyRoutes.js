@@ -5,7 +5,9 @@
     //res redirect to frontEnd url to fill survey
   })
 */
-
+const _ = require('lodash');
+const Path = require('path-parser').Path;
+const {URL} = require('url');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -14,10 +16,10 @@ const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 
 module.exports = (app) => {
-  //idea Can be changed : Currently this is after the user responded function / beautify | Use HTML CSS
-  app.get('/api/surveys/thanks', (req, res) => {
+  //idea Can be changed : Currently this is after the user responded function / beautify | Use HTML CSS | Use res.redirect ->ref authRoutes
+  app.get('api/surveys/:surveyId/:choice', (req, res) => {
     console.log(req);
-    res.send('Thank you for your response')
+    res.redirect('surveys/thanks'); //fixme
   });
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => { //todo show error on UI if low credits
     const {title, subject, body, recipients} = req.body;
@@ -43,4 +45,34 @@ module.exports = (app) => {
       res.status(422).send(e);
     }
   });
+
+  app.post('/api/surveys/webhooks', (request, result) => {
+    const p = new Path('/api/surveys/:surveyId/:choice');
+    const event = _.chain(request.body)
+        // Parse data for email,id,choice
+        .map(({email, url}) => {
+          const match = p.test(new URL(url).pathname);
+          if (match) return {email, surveyId: match.surveyId, choice: match.choice === 'thanks' ? 'yes' : 'no'}
+        })
+        //removes null elements
+        .compact()
+        //Checks and returns only unique elements
+        .uniqBy('email', 'surveyId')
+        //info Updating in MongoDB
+        .forEach(({surveyId, email, choice}) => {
+          Survey.updateOne({
+            _id: surveyId,
+            recipients: {
+              $elemMatch: {email: email, responded: false}
+            }
+          }, {
+            $inc: {[choice]: 1},
+            $set: {'recipients.$.responded': true},
+            lastResponse: new Date()
+          }).exec()
+        })
+        .value();
+    console.log(event);
+    result.send({})
+  })
 };
