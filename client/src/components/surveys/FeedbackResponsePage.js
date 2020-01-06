@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+// todo Make Better UI
 function mapStateToProps(state) {
   return {};
 }
