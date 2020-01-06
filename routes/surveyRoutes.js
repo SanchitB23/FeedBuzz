@@ -16,11 +16,16 @@ const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 
 module.exports = (app) => {
+
+
   //idea Can be changed : Currently this is after the user responded function / beautify | Use HTML CSS | Use res.redirect ->ref authRoutes
   app.get('api/surveys/:surveyId/:choice', (req, res) => {
     console.log(req);
+    console.log('get response');
     res.redirect('surveys/thanks'); //fixme
   });
+
+
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => { //todo show error on UI if low credits
     const {title, subject, body, recipients} = req.body;
 
@@ -45,6 +50,7 @@ module.exports = (app) => {
       res.status(422).send(e);
     }
   });
+
 
   app.post('/api/surveys/webhooks', (request, result) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
@@ -73,6 +79,13 @@ module.exports = (app) => {
         })
         .value();
     console.log(event);
-    result.send({})
+    console.log('post response');
+    result.send('Thanks')
+  });
+
+
+  app.get('/api/surveys', requireLogin, async (req, result) => {
+    const userSurveys = await Survey.find({_user: req.user.id});
+    result.send(userSurveys)
   })
 };
