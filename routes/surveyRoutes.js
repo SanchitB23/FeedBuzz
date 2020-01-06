@@ -22,7 +22,7 @@ module.exports = (app) => {
   //idea Can be changed : Currently this is after the user responded function / beautify | Use HTML CSS | Use res.redirect ->ref authRoutes
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     console.log("something");
-    res.send('working'); //fixme
+    res.redirect('/surveys/thanks'); //fixme (Might work in PROD
   });
 
 
