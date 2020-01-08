@@ -82,7 +82,9 @@ module.exports = (app) => {
 
 
   app.get('/api/surveys', requireLogin, async (req, result) => {
-    const userSurveys = await Survey.find({_user: req.user.id});
+    const userSurveys = await Survey
+        .find({_user: req.user.id})
+        .select({recipients: false});
     result.send(userSurveys)
   })
 };
