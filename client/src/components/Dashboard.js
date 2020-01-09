@@ -17,7 +17,7 @@ class Dashboard extends Component {
         <div>
           <SurveyList/>
           <div className="fixed-action-btn">
-            <Link to={'/surveys/new'} className="btn-floating btn-large red">
+            <Link to={'/surveys/new'} className="btn-floating btn-large red pulse">
               <i className="material-icons">add</i>
             </Link>
           </div>

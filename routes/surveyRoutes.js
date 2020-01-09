@@ -77,7 +77,7 @@ module.exports = (app) => {
           }).exec()
         })
         .value();
-    console.log(event);
+    // console.log(event);
   });
 
 
