@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import StripeCheckout from "react-stripe-checkout";
 import {connect} from "react-redux";
 import {fetchUser, handleToken} from "../actions";
+import assets from "../resources/info";
+
 
 class StripeWrapper extends Component {
   componentWillUnmount() {
@@ -20,10 +22,12 @@ class StripeWrapper extends Component {
             }
             stripeKey={process.env.REACT_APP_STRIPE_KEY}
         >
-          <button className="btn">Add Credits</button>
+          <a className="btn" color={assets["secondary-color-green"]}>Add Credits
+            <i className="material-icons left tiny">payment</i>
+          </a>
         </StripeCheckout>
     )
   }
 }
 
-export default connect(null, {handleToken,fetchUser})(StripeWrapper);
+export default connect(null, {handleToken, fetchUser})(StripeWrapper);
