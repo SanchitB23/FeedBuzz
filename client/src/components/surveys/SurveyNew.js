@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import {reduxForm} from "redux-form";
+import {Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 
 import SurveyForm from "./SurveyForm";
 import SurveyFormReview from "./SurveyFormReview";
-import {reduxForm} from "redux-form";
 
 //This -> SurveyForm  + FormReview
 class SurveyNew extends Component {
@@ -22,6 +24,7 @@ class SurveyNew extends Component {
   }
 
   render() {
+    if (!this.props.auth) return <Redirect to="/auth_error"/>;
     return (
         <div>
           {this.renderContent()}
@@ -30,6 +33,10 @@ class SurveyNew extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {auth: state.auth};
+}
+
 export default reduxForm({
   form: 'surveyForm'
-})(SurveyNew);
+})(connect(mapStateToProps)(SurveyNew));

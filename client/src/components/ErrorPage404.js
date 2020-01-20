@@ -1,5 +1,5 @@
 import React from 'react';
-import Ill_404 from '../resources/404_Illus.svg.png'
+import Ill_404 from '../resources/Illus_PageNotFound.png'
 import assets from "../resources/info";
 
 const ErrorPage404 = () => {

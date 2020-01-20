@@ -1,5 +1,5 @@
 import React from 'react';
-import Ill_thanks from "../../resources/Illus_thanks.svg.png"
+import Ill_thanks from "../../resources/Illus_SurveyResponseThanks.png"
 import assets from "../../resources/info";
 
 const FeedbackResponse = () => {

@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import SurveyList from "./surveys/SurveyList";
 
 function mapStateToProps(state) {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {};
+  return {auth: state.auth};
 }
 
 class Dashboard extends Component {
   render() {
+    if (!this.props.auth) return <Redirect to="/auth_error"/>;
     return (
         <div>
           <SurveyList/>
@@ -27,5 +24,5 @@ class Dashboard extends Component {
 }
 
 export default connect(
-    mapStateToProps, mapDispatchToProps
+    mapStateToProps
 )(Dashboard);
