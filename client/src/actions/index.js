@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {FETCH_SURVEYS, FETCH_USER} from "../utils/actionTypes";
+import {FETCH_SURVEY_DETAILS, FETCH_SURVEYS, FETCH_USER} from "../utils/actionTypes";
 
 export const fetchUser = () => async (dispatch) => {
   const res = await axios.get('/api/current_user');
@@ -23,6 +23,12 @@ export const submitSurvey = (values, history) => async dispatch => {
 export const fetchSurveys = () => async dispatch => {
   const res = await axios.get('/api/surveys');
   dispatch({type: FETCH_SURVEYS, payload: res.data})
+};
+
+export const fetchSurvey = (surveyId) => async (dispatch) => {
+  console.log("BAction Fetch Survey");
+  const result = await axios.post('/api/survey-detail', {surveyId});
+  dispatch({type: FETCH_SURVEY_DETAILS, payload: result.data})
 };
 /*
 export const fetchUser = () => {

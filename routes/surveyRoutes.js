@@ -18,13 +18,13 @@ const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 
 module.exports = (app) => {
 
-
+  //Response Get Request
   app.get('/api/surveys/response/:choice', (req, res) => {
     console.log("something");
     res.redirect('/surveys/response'); //info Working in PROD
   });
 
-
+  //Create and Save Survey
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => { //todo show error on UI if low credits
     const {title, subject, body, recipients} = req.body;
 
@@ -50,7 +50,7 @@ module.exports = (app) => {
     }
   });
 
-
+  //Web hook for SendGrid tracker
   app.post('/api/surveys/webhooks', (request, result) => {
     const p = new Path('/api/surveys/response/:choice');
     const event = _.chain(request.body)
@@ -111,11 +111,22 @@ module.exports = (app) => {
     // console.log(event);
   });
 
-
+  //Get requests for Surveys
   app.get('/api/surveys', requireLogin, async (req, result) => {
     const userSurveys = await Survey
         .find({_user: req.user.id})
-        .select({recipients: false});
+        .select({
+          recipients: false,
+          _user: false,
+          lastResponse: false,
+          body: false
+        });
     result.send(userSurveys)
+  });
+
+//  Get Request for details of One Survey
+  app.post('/api/survey-detail', requireLogin, async (request, result) => {
+    const surveyDetail = await Survey.find({_id: request.body.surveyId});
+    result.status(200).send(surveyDetail)
   })
 };
