@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchSurvey, fetchSurveys} from "../../actions";
+import {deleteSurvey, fetchSurvey, fetchSurveys} from "../../actions";
 import assets from "../../resources/info";
 import IllNoSurvey from '../../resources/No Surveys Illus.png'
+import {Link} from "react-router-dom";
 
 function mapStateToProps(state) {
   return {surveys: state.surveys};
@@ -24,12 +25,26 @@ class SurveyList extends Component {
                 <span className={"card-title"}>{survey.title}</span>
                 <p>{survey.subject}</p>
                 <p className={"right"}>
-                  Sent On: {new Date(survey.dateSent).toLocaleDateString()}
+                  Sent On: {new Date(survey.dateSent).toLocaleString()}
                 </p>
               </div>
               <div className={"card-action"}>
                 <a>Yes:{survey.yes}</a>
                 <a>No:{survey.no}</a>
+                <div class="right">
+                  <Link className="btn blue darken-1 btn-flat white-text" onClick={() => {
+                    alert("Wait for it")
+                  }}
+                        style={{"marginRight": '10px'}}>
+                    View
+                    <i className="material-icons white-text left">remove_red_eye</i>
+                  </Link>
+                  <a className="btn red darken-1 btn-flat white-text modal-trigger"
+                     onClick={() => this.props.deleteSurvey(survey._id)}>
+                    Delete
+                    <i className="material-icons white-text left">delete</i>
+                  </a>
+                </div>
               </div>
             </div>
         )
@@ -54,5 +69,5 @@ class SurveyList extends Component {
 }
 
 export default connect(
-    mapStateToProps, {fetchSurveys, fetchSurvey}
+    mapStateToProps, {fetchSurveys, fetchSurvey, deleteSurvey}
 )(SurveyList);

@@ -34,6 +34,7 @@ module.exports = (survey) => {
             }
             button:hover {
                 color: whitesmoke;
+                cursor:pointer;
             }
         </style>
     </head>

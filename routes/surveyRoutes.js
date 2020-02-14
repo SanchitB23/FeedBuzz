@@ -128,5 +128,10 @@ module.exports = (app) => {
   app.post('/api/survey-detail', requireLogin, async (request, result) => {
     const surveyDetail = await Survey.find({_id: request.body.surveyId});
     result.status(200).send(surveyDetail)
+  });
+
+  app.post('/api/survey-delete', requireLogin, async (req, res) => {
+    const result = await Survey.deleteOne({_id: req.body.surveyId});
+    res.send(result)
   })
 };
