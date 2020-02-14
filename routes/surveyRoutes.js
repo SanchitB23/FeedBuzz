@@ -55,26 +55,56 @@ module.exports = (app) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
     const event = _.chain(request.body)
         // Parse data for email,id,choice
-        .map(({email, url}) => {
-          const match = p.test(new URL(url).pathname);
-          if (match) return {email, surveyId: match.surveyId, choice: match.choice === 'thanks' ? 'yes' : 'no'}
+        .map((event) => {
+          if (event.url) {
+            // console.log("if", dateIndia.toLocaleTimeString(), event);
+            const match = p.test(new URL(event.url).pathname);
+            // console.log("Match", match, "url: ", event.url, "P.test", p.test(new URL(event.url).pathname), "Pathname", new URL(event.url).pathname);
+            if (match) return {
+              email: event.email,
+              // surveyId: match.surveyId,
+              choice: match.choice === 'thanks' ? 'yes' : 'no',
+              event: event.event,
+              surveyId: event.surveyIdArgs,
+            }
+          } else {
+            // console.log("else", dateIndia.toLocaleTimeString(), event);
+            return {
+              event: event.event,
+              surveyId: event.surveyIdArgs,
+              email: event.email,
+            }
+          }
         })
         //removes null elements
         .compact()
         //Checks and returns only unique elements
         .uniqBy('email', 'surveyId')
-        //info Updating in MongoDB
-        .forEach(({surveyId, email, choice}) => {
-          Survey.updateOne({
-            _id: surveyId,
-            recipients: {
-              $elemMatch: {email: email, responded: false}
-            }
-          }, {
-            $inc: {[choice]: 1},
-            $set: {'recipients.$.responded': true},
-            lastResponse: new Date()
-          }).exec()
+        //Updating in MongoDB
+        .forEach((event) => {
+          // console.log("In Survey", event.dateTime.toLocaleString(), event);
+          if (event.event === 'click') {
+            Survey.updateOne({
+              _id: event.surveyId,
+              recipients: {
+                $elemMatch: {email: event.email, responded: false}
+              }
+            }, {
+              $inc: {[event.choice]: 1},
+              $set: {'recipients.$.responded': true},
+              lastResponse: new Date()
+            }).exec()
+          } else if (event.event === 'open') {
+            Survey.updateOne({
+              _id: event.surveyId,
+              recipients: {
+                $elemMatch: {email: event.email}
+              }
+            }, {
+              $inc: {'recipients.$.timesOpened': 1},
+              $set: {'recipients.$.hasOpened': true},
+            }).exec()
+          }
         })
         .value();
     // console.log(event);

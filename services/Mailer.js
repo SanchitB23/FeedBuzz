@@ -3,17 +3,17 @@ const helper = sendGrid.mail;
 const keys = require('../config/keys');
 
 class Mailer extends helper.Mail {
-  constructor({subject, recipients}, content) {
+  constructor({subject, recipients, id}, content) {
     super();
     this.sendGridAPI = sendGrid(keys.sendGridKey);
     this.from_email = new helper.Email('no-reply@feedbuzz-project.herokuapp.com');
     this.subject = subject;
     this.body = new helper.Content('text/html', content);
     this.recipients = this.formatAddresses(recipients);
-
+    this.surveyId = id;
     this.addContent(this.body); //helper.Mail function
     this.addClickTracking();
-    this.addRecipients();
+    this.addRecipients(id);
   }
 
   formatAddresses(recipients) {
@@ -34,6 +34,7 @@ class Mailer extends helper.Mail {
     const personalize = new helper.Personalization();
     this.recipients.forEach(recipient => personalize.addTo(recipient));
     this.addPersonalization(personalize);
+    personalize.addCustomArg(new helper.CustomArgs('surveyIdArgs', this.surveyId))
   }
 
   async send() { //DONEfixme error when sending to google IDs etc
