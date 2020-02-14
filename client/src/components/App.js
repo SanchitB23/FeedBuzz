@@ -31,7 +31,7 @@ class App extends Component {
               <Route exact path="/" component={LandingPage.bind(this)}/>
               <Route exact path="/surveys" component={Dashboard}/>
               <Route exact path="/surveys/new" component={SurveyNew}/>
-              <Route exact path="/surveys/thanks" component={FeedbackResponsePage}/>
+              <Route exact path="/surveys/response" component={FeedbackResponsePage}/>
               {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
               <Route exact={true} path="*/auth_error" component={AuthError}/>
               <Route component={ErrorPage404}/>

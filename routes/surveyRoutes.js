@@ -19,9 +19,9 @@ const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 module.exports = (app) => {
 
 
-  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
+  app.get('/api/surveys/response/:choice', (req, res) => {
     console.log("something");
-    res.redirect('/surveys/thanks'); //info Working in PROD
+    res.redirect('/surveys/response'); //info Working in PROD
   });
 
 
@@ -52,7 +52,7 @@ module.exports = (app) => {
 
 
   app.post('/api/surveys/webhooks', (request, result) => {
-    const p = new Path('/api/surveys/:surveyId/:choice');
+    const p = new Path('/api/surveys/response/:choice');
     const event = _.chain(request.body)
         // Parse data for email,id,choice
         .map((event) => {
@@ -107,6 +107,7 @@ module.exports = (app) => {
           }
         })
         .value();
+    // result.send({})
     // console.log(event);
   });
 
