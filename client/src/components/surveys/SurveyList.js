@@ -31,11 +31,6 @@ class SurveyList extends Component {
                 <a>Yes:{survey.yes}</a>
                 <a>No:{survey.no}</a>
               </div>
-              <button onClick={() => {
-                console.log("click survey", survey._id);
-                this.props.fetchSurvey(survey._id)
-              }}>Fetch This Survey Info
-              </button>
             </div>
         )
       });

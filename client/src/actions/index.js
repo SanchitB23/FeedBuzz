@@ -26,7 +26,6 @@ export const fetchSurveys = () => async dispatch => {
 };
 
 export const fetchSurvey = (surveyId) => async (dispatch) => {
-  console.log("BAction Fetch Survey");
   const result = await axios.post('/api/survey-detail', {surveyId});
   dispatch({type: FETCH_SURVEY_DETAILS, payload: result.data})
 };
