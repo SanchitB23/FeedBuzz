@@ -14,10 +14,11 @@ class AuthError extends Component {
   render() {
     if (this.props.auth) return <Redirect to="/surveys"/>;
     return (
-        <div className="container" style={{textAlign: 'center'}}>
-          <img src={IllAuth} alt={"Error: Page Not Found"} height={350}
-               style={{margin: "10% 0 3% 0", display: "block"}}/>
-          <h4 style={{color: assets["secondary-color-green"]}}>Invalid Login Information<br/>Please
+        <div className="container"
+             style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+          <img src={IllAuth} alt={"Error: Page Not Found"} height={350} style={{margin: "20px 0"}}/>
+          <h4 style={{color: assets["secondary-color-green"], textAlign: "center", marginBottom: "20px"}}>Invalid Login
+            Information<br/>Please
             Sign In again!</h4>
         </div>
     );

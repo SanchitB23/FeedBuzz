@@ -26,9 +26,9 @@ function LandingPage() { //idea if already logged in then redirect to dashboard
   const w = window.innerWidth;
   return (
       <div style={{textAlign: 'center'}}>
-        <div className="card"
+        <div className=""
              style={{
-               height: "300px",
+               height: "600px",
                display: "table"
                , width: "100%",
                backgroundColor: "#BDEB98"
