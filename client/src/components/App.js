@@ -26,7 +26,7 @@ class App extends Component {
     return (
         <BrowserRouter>
           <Header/>
-          <div className="container">
+          <div>
             <Switch>
               <Route exact path="/" component={LandingPage.bind(this)}/>
               <Route exact path="/surveys" component={Dashboard}/>

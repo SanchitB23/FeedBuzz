@@ -26,7 +26,7 @@ class SurveyNew extends Component {
   render() {
     if (!this.props.auth) return <Redirect to="/auth_error"/>;
     return (
-        <div>
+        <div className="container">
           {this.renderContent()}
         </div>
     );
