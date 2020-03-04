@@ -19,7 +19,8 @@ class Footer extends Component {
           <div className="container" style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            alignItems: "center"
           }}>
             <ul>
               {/*temp Change to Link tag*/}
@@ -38,6 +39,13 @@ class Footer extends Component {
               <li><a className="grey-text text-lighten-3" href="#"><i class="fab fa-twitter"/> Twitter</a></li>
               <li><a className="grey-text text-lighten-3" href="#"><i class="fab fa-instagram"/> Instagram</a></li>
             </ul>
+          </div>
+          <div className="footer-copyright">
+            <div className="container" style={{alignItems: "center", display: "flex", justifyContent: "space-around"}}>
+              <div className="left"><i className="far fa-copyright"/> Copyright of JXBFS</div>
+              <div className="center">Major Project 2020</div>
+              <div className="right">V1.2</div>
+            </div>
           </div>
         </footer>
     );
