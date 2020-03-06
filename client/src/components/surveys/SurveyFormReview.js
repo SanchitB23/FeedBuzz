@@ -27,7 +27,7 @@ class SurveyFormReview extends Component {
     return (
         <div>
           <h4>Please Confirm your entries</h4>
-          {this.renderFormReviewFields}
+          <div className="card-content">{this.renderFormReviewFields}</div>
           <button
               onClick={onCancel}
               className="yellow darken-3 btn-flat">

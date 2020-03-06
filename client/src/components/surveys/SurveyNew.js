@@ -27,7 +27,9 @@ class SurveyNew extends Component {
     if (!this.props.auth) return <Redirect to="/auth_error"/>;
     return (
         <div className="container">
-          {this.renderContent()}
+          <div className="card darken-1" style={{padding: "2%", margin: "3%"}}>
+            {this.renderContent()}
+          </div>
         </div>
     );
   }

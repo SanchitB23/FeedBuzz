@@ -34,10 +34,10 @@ class Footer extends Component {
             </button>
             <ul>
               {/*temp Change to Link tag*/}
-              <li><a className="grey-text text-lighten-3" href="#"><i class="fab fa-facebook-f"/> Facebook</a>
+              <li><a className="grey-text text-lighten-3" href="#"><i className="fab fa-facebook-f"/> Facebook</a>
               </li>
-              <li><a className="grey-text text-lighten-3" href="#"><i class="fab fa-twitter"/> Twitter</a></li>
-              <li><a className="grey-text text-lighten-3" href="#"><i class="fab fa-instagram"/> Instagram</a></li>
+              <li><a className="grey-text text-lighten-3" href="#"><i className="fab fa-twitter"/> Twitter</a></li>
+              <li><a className="grey-text text-lighten-3" href="#"><i className="fab fa-instagram"/> Instagram</a></li>
             </ul>
           </div>
           <div className="footer-copyright">

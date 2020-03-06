@@ -13,13 +13,14 @@ import FeedbackResponsePage from "./surveys/FeedbackResponsePage";
 import ErrorPage404 from "./ErrorPage404";
 import AuthError from "./AuthError";
 import Footer from "./Footer";
+import SurveyDetail from "./surveys/SurveyDetail"
 // import TestingPage from "./TestingPage";
 
 // todo HTML File fix
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
-    M.AutoInit()
+    M.AutoInit() //no use
   }
 
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
             <Route exact path="/surveys" component={Dashboard}/>
             <Route exact path="/surveys/new" component={SurveyNew}/>
             <Route exact path="/surveys/response" component={FeedbackResponsePage}/>
+            <Route exact path="/surveys/survey_detail/:surveyId" component={SurveyDetail}/>
             {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
             <Route exact={true} path="*/auth_error" component={AuthError}/>
             <Route component={ErrorPage404}/>
