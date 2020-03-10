@@ -5,6 +5,7 @@ import _ from "lodash";
 import {Link} from "react-router-dom";
 import validateEmails from "../../utils/validateEmails";
 import formFields from "./formFields";
+import {SurveyFormFillIllus} from "../../resources/survey_form_illus_svg";
 
 
 class SurveyForm extends Component {
@@ -22,16 +23,30 @@ class SurveyForm extends Component {
 
   render() {
     return (
-        <div>
-          <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
-            {this.renderField()}
-            <Link to={'/surveys'} className='red btn-flat white-text red'>Cancel</Link>
-            <button type='submit' className='teal btn-flat right white-text'>
-              <i className='material-icons left'>done</i>
-              Submit
-            </button>
-          </form>
-        </div>
+        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
+          <div style={{display: "flex", justifyContents: "space-between"}}>
+            <div style={{width: "55%"}}>
+              {this.renderField()}
+            </div>
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "45%",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginLeft: "1rem"
+            }}>
+              <SurveyFormFillIllus/>
+              <div style={{display: "flex", justifyContent: "space-evenly", width: "100%"}}>
+                <Link to={'/surveys'} className='red btn-flat white-text red'>Cancel</Link>
+                <button type='submit' className='teal btn-flat right white-text'>
+                  <i className='material-icons left'>done</i>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
     );
   }
 }

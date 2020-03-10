@@ -11,8 +11,11 @@ function mapStateToProps({auth}) {
 }
 
 class Header extends Component {
+  state = {
+    logoHover: false
+  };
 
-  renderContent() {
+  renderRightContent() {
     switch (this.props.auth) {
       case null: //todo loading animation or something
         return <li style={{fontSize: '20px'}}><i className={"fa fa-spinner fa-pulse small right"}/>Please Wait</li>;
@@ -33,19 +36,36 @@ class Header extends Component {
     }
   }
 
+  toggleHover = () => {
+    this.setState({logoHover: !this.state.logoHover});
+  };
+
   //<a href="/api/logout">Logout</a>
   render() {
+    let logoStyle;
+    if (this.state.logoHover) {
+      logoStyle = {
+        fontFamily: "Lucida Calligraphy",
+        textDecoration: "none",
+        backgroundColor: "#FEAD48",
+        padding: "0 4px"
+      }
+    } else logoStyle = {
+      fontFamily: "Lucida Calligraphy",
+      textDecoration: "none",
+      padding: "0 4px"
+    };
     return (
         <div className="navbar-fixed">
           <nav style={{backgroundColor: assets["primary-color"]}}>
             <div className="nav-wrapper">
               <div className="container"> {/*temp*/}
                 <Link to={this.props.auth ? '/surveys' : '/'} className={"brand-logo left"}
-                      style={{fontFamily: "Lucida Calligraphy"}}>
+                      style={logoStyle} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
                   FeedBuzz
                 </Link>
                 <ul className="right">
-                  {this.renderContent()}
+                  {this.renderRightContent()}
                 </ul>
               </div>
             </div>

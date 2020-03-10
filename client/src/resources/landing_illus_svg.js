@@ -1,7 +1,6 @@
 import React from "react";
 
 export const Illus1 = ({width = "", height = "533", viewBox = "0 0 622.726 533", className = "", style = {}}) =>
-
     <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} xmlnsXlink="http://www.w3.org/1999/xlink"
          className={`svg-icon ${className || ""}`} style={style}
          viewBox={viewBox}>

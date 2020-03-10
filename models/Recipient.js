@@ -5,6 +5,7 @@ const recipientSchema = new Schema({
   email: String,
   responded: {type: Boolean, default: false},
   hasOpened: {type: Boolean, default: false},
-  timesOpened: {type: Number, default: 0}
+  timesOpened: {type: Number, default: 0},
+  dateResponded: Date
 });
 module.exports = recipientSchema;
