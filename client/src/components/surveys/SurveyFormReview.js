@@ -22,6 +22,21 @@ class SurveyFormReview extends Component {
         </div>
     )
   });
+  state = {
+    surveySent: false
+  };
+
+  componentDidMount() {
+    this.setState({
+      surveySent: false
+    });
+  }
+
+  componentWillMount() {
+    this.setState({
+      surveySent: false
+    });
+  }
 
   render() {
     const {onCancel, values, submitSurvey, history} = this.props;
@@ -51,10 +66,17 @@ class SurveyFormReview extends Component {
             </button>
             <button
                 type='submit'
-                onClick={() => submitSurvey(values, history)}
-                className="green right btn-flat">
+                disabled={this.state.surveySent}
+                onClick={() => {
+                  this.setState({surveySent: true});
+                  console.log("CLick", this.state.surveySent);
+                  submitSurvey(values, history);
+                }}
+                className={`${this.state.surveySent ? 'disabled' : 'green'} right btn-flat`}>
               Save and Send
-              <i className="material-icons right ">email</i>
+              {this.state.surveySent ? (<div className="left spinner-border text-success " role="status">
+                <span class="sr-only">Loading...</span>
+              </div>) : <i className="material-icons right ">email</i>}
             </button>
           </div>
         </div>
