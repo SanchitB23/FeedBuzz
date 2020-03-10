@@ -51,6 +51,15 @@ class SurveyForm extends Component {
   }
 }
 
+/*\
+*     display: flex;
+    flex-direction: column;
+    width: 45%;
+    justify-content: center;
+    align-items: center;
+}
+
+*/
 function validate(values) {
   const errors = {};
   _.each(formFields, ({name, label}) => {

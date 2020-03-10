@@ -52,7 +52,7 @@ module.exports = (app) => {
 
   //Web hook for SendGrid tracker
   app.post('/api/surveys/webhooks', (request, result) => {
-    console.log("Web Hook Success", request);
+    // console.log("Web Hook Success", request);
     const p = new Path('/api/surveys/response/:choice');
     const event = _.chain(request.body)
         // Parse data for email,id,choice

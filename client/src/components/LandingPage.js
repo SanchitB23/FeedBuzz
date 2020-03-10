@@ -46,7 +46,7 @@ function LandingPage() { //idea if already logged in then redirect to dashboard
         <div className="container">
           {
             cards.map((card, index) => {
-                  console.log(index);
+                  // console.log(index);
                   if (index % 2 === 0) return (
                       <div className="card grey lighten-5 horizontal"
                            style={{justifyContent: "space-around", alignItems: "center"}}>

@@ -25,7 +25,7 @@ class SurveyList extends Component {
 
   renderSurveys() {
     const {surveys} = this.props;
-    console.log("Survey List", surveys);
+    // console.log("Survey List", surveys);
     if (surveys.length)
         // if (this.state.sortOrder.key === 2) {
       return surveys
@@ -93,7 +93,7 @@ class SurveyList extends Component {
   }
 
   render() {
-    console.log("List", this.state);
+    // console.log("List", this.state);
     return (
         <>
           <div style={{display: "flex", justifyContent: "flex-end", alignItems: "center", paddingTop: "1rem"}}>

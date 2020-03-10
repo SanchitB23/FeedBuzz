@@ -69,7 +69,7 @@ class SurveyFormReview extends Component {
                 disabled={this.state.surveySent}
                 onClick={() => {
                   this.setState({surveySent: true});
-                  console.log("CLick", this.state.surveySent);
+                  // console.log("CLick", this.state.surveySent);
                   submitSurvey(values, history);
                 }}
                 className={`${this.state.surveySent ? 'disabled' : 'green'} right btn-flat`}>

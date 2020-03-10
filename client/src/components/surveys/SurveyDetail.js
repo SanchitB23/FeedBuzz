@@ -140,8 +140,6 @@ class SurveyDetail extends Component {
   }
 
   renderContents(survey) {
-    // console.log("content", survey);
-    console.log(survey);
     return (
         <div className="card">
           <div className="card-content">
