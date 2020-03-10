@@ -14,14 +14,18 @@ import ErrorPage404 from "./ErrorPage404";
 import AuthError from "./AuthError";
 import Footer from "./Footer";
 import SurveyDetail from "./surveys/SurveyDetail"
+import AboutUsPage from "./AboutUsPage";
 // import TestingPage from "./TestingPage";
 
 // todo HTML File fix
+const ContactUs = () => <div>Contact US</div>;
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
     M.AutoInit() //no use
   }
+
 
   render() {
     // console.log(this.props.auth);
@@ -34,6 +38,8 @@ class App extends Component {
             <Route exact path="/surveys/new" component={SurveyNew}/>
             <Route exact path="/surveys/response" component={FeedbackResponsePage}/>
             <Route exact path="/surveys/survey_detail/:surveyId" component={SurveyDetail}/>
+            <Route exact path="/about_us" component={AboutUsPage}/>
+            <Route exact path="/contact_us" component={ContactUs}/>
             {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
             <Route exact={true} path="*/auth_error" component={AuthError}/>
             <Route component={ErrorPage404}/>

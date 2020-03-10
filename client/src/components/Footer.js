@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import assets from "../resources/info";
+import {Link} from "react-router-dom";
 
 class Footer extends Component {
   constructor(props) {
@@ -24,8 +25,8 @@ class Footer extends Component {
           }}>
             <ul>
               {/*temp Change to Link tag*/}
-              <li><a className="grey-text text-lighten-3" href="#">About Us</a></li>
-              <li><a className="grey-text text-lighten-3" href="#">Contact Us</a></li>
+              <li><Link className="grey-text text-lighten-3" to={'/about_us'}>About Us</Link></li>
+              <li><Link className="grey-text text-lighten-3" to={'/contact_us'}>Contact Us</Link></li>
               <li><a className="grey-text text-lighten-3" href="#">Terms and Conditions</a></li>
             </ul>
             <button className="btn-flat btn-large grey lighten-2" onClick={() => this.scrollToTop()}><i
