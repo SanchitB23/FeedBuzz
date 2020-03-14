@@ -38,8 +38,8 @@ class SurveyForm extends Component {
             }}>
               <SurveyFormFillIllus/>
               <div style={{display: "flex", justifyContent: "space-evenly", width: "100%"}}>
-                <Link to={'/surveys'} className='red btn-flat white-text red'>Cancel</Link>
-                <button type='submit' className='teal btn-flat right white-text'>
+                <Link to={'/surveys'} className='red waves-effect waves-light btn-flat white-text red'>Cancel</Link>
+                <button type='submit' className='teal waves-effect waves-light btn-flat right white-text'>
                   <i className='material-icons left'>done</i>
                   Submit
                 </button>

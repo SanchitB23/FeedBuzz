@@ -60,12 +60,12 @@ class SurveyList extends Component {
                     <a>No:{survey.no}</a>
                     <div className="right">
                       <Link to={`${'/surveys/survey_detail/' + survey._id}`}
-                            className="btn blue darken-1 btn-flat white-text"
+                            className="btn blue waves-effect waves-light darken-1 btn-flat white-text"
                             style={{"marginRight": '10px'}}>
                         View
                         <i className="material-icons white-text left">remove_red_eye</i>
                       </Link>
-                      <a className="btn red darken-1 btn-flat white-text"
+                      <a className="btn red waves-effect waves-light darken-1 btn-flat white-text"
                          onClick={() => this.deleteSurveyModal(survey._id)}>
                         {/*<i class="fas fa-trash"></i>*/}
                         Delete

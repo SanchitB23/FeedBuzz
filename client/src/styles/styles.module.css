@@ -13,3 +13,8 @@
 .container_s {
     width: 80%;
 }
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}

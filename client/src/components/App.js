@@ -15,6 +15,7 @@ import AuthError from "./AuthError";
 import Footer from "./Footer";
 import SurveyDetail from "./surveys/SurveyDetail"
 import AboutUsPage from "./AboutUsPage";
+import UserProfilePage from "./UserProfilePage";
 // import TestingPage from "./TestingPage";
 
 // todo HTML File fix
@@ -40,6 +41,7 @@ class App extends Component {
             <Route exact path="/surveys/survey_detail/:surveyId" component={SurveyDetail}/>
             <Route exact path="/about_us" component={AboutUsPage}/>
             <Route exact path="/contact_us" component={ContactUs}/>
+            <Route exact path="/my_profile" component={UserProfilePage}/>
             {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
             <Route exact={true} path="*/auth_error" component={AuthError}/>
             <Route component={ErrorPage404}/>

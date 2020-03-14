@@ -24,12 +24,13 @@ class Header extends Component {
             className="fab fa-google-plus-g right red-text small"/>Login With</a></li>;
       default:
         return [
-          <li key="1"><StripeWrapper/></li>,
-          <li key="2" style={{margin: '0 10px'}} className={styles.headerText}>
-            Credits: {this.props.auth.credits}
+          <li key="2" style={{margin: '0 10px'}} className={styles.headerText} onMouseOver={() => {
+            console.log("Over")
+          }}>
+            <StripeWrapper header={true}/>
           </li>,
-          <li key="3"><a href='#' onClick={() => alert("Wait for it")} className={styles.headerText}><i
-              className="fas fa-user-tie right"/> {this.props.auth.name}</a>
+          <li key="3"><Link className={styles.headerText} to={'/my_profile'}><i
+              className="fas fa-user-tie right"/> {this.props.auth.name}</Link>
           </li>,
           <li key='4'><a href="/api/logout"><i className="fa fa-sign-out-alt"/></a></li>
         ]
@@ -47,7 +48,7 @@ class Header extends Component {
       logoStyle = {
         fontFamily: "Lucida Calligraphy",
         textDecoration: "none",
-        backgroundColor: "#FEAD48",
+        backgroundColor: "#E5A759",
         padding: "0 4px"
       }
     } else logoStyle = {

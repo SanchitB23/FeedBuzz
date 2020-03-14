@@ -2,15 +2,35 @@ import React, {Component} from "react";
 import StripeCheckout from "react-stripe-checkout";
 import {connect} from "react-redux";
 import {fetchUser, handleToken} from "../actions";
-import assets from "../resources/info";
 
+function mapStateToProps({auth}) {
+  return {credits: auth.credits}
+}
 
 class StripeWrapper extends Component {
-  componentWillUnmount() {
-    // this.props.fetchUser();
-  }
+  state = {
+    headerStripeHover: false
+  };
+  styleIcon = {
+    cursor: "auto"
+  };
+  toggleHover = () => {
+    this.setState({headerStripeHover: !this.state.headerStripeHover});
+  };
 
   render() {
+    let headerStripeStyle;
+    if (this.state.headerStripeHover) {
+      headerStripeStyle = {
+        textDecoration: "none",
+        backgroundColor: "#E5A759",
+        padding: "0 4px",
+        cursor: "pointer"
+      }
+    } else headerStripeStyle = {
+      textDecoration: "none",
+      padding: "0 4px"
+    };
     return (
         <StripeCheckout
             name={"FeedBuzz"}
@@ -22,12 +42,19 @@ class StripeWrapper extends Component {
             }
             stripeKey={process.env.REACT_APP_STRIPE_KEY}
         >
-          <a className="btn" color={assets["secondary-color-green"]}>Add Credits
-            <i className="material-icons left tiny">payment</i>
-          </a>
+          {
+            this.props.header ? this.props.credits ? (
+                <div style={headerStripeStyle} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}
+                >
+                  Credits: {this.props.credits} <i style={this.styleIcon}
+                                                   className="right far fa-plus-square green-text"/>
+                </div>
+            ) : "" : <i style={this.styleIcon} onMouseOver={this.styleIcon.cursor = "pointer"}
+                        className={`${this.props.header ? 'right' : ""} far fa-plus-square green-text`}/>
+          }
         </StripeCheckout>
     )
   }
 }
 
-export default connect(null, {handleToken, fetchUser})(StripeWrapper);
+export default connect(mapStateToProps, {handleToken, fetchUser})(StripeWrapper);
