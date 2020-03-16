@@ -93,30 +93,10 @@ class SurveyList extends Component {
   }
 
   render() {
-    // console.log("List", this.state);
     return (
         <>
           <div style={{display: "flex", justifyContent: "flex-end", alignItems: "center", paddingTop: "1rem"}}>
-            <Dropdown>
-              <Dropdown.Toggle variant="info" id="dropdown-basic">
-                Sort by: {this.state.sortOrder.value}
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1" onClick={() => {
-                  this.changeSortOrder(1)
-                }}>A-Z</Dropdown.Item>
-                <Dropdown.Item href="#/action-1" onClick={() => {
-                  this.changeSortOrder(0)
-                }}>Z-A</Dropdown.Item>
-                <Dropdown.Item href="#/action-2" onClick={() => {
-                  this.changeSortOrder(2)
-                }}>Newest First</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() => {
-                  this.changeSortOrder(3)
-                }}>Oldest First</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            {this.renderSortDropdown()}
           </div>
           <hr/>
           {this.renderSurveys()}
@@ -159,6 +139,31 @@ class SurveyList extends Component {
         });
         break;
     }
+  }
+
+  renderSortDropdown() {
+    return (
+        <Dropdown>
+          <Dropdown.Toggle variant="info" id="dropdown-basic">
+            Sort by: {this.state.sortOrder.value}
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1" onClick={() => {
+              this.changeSortOrder(1)
+            }}>A-Z</Dropdown.Item>
+            <Dropdown.Item href="#/action-1" onClick={() => {
+              this.changeSortOrder(0)
+            }}>Z-A</Dropdown.Item>
+            <Dropdown.Item href="#/action-2" onClick={() => {
+              this.changeSortOrder(2)
+            }}>Newest First</Dropdown.Item>
+            <Dropdown.Item href="#/action-3" onClick={() => {
+              this.changeSortOrder(3)
+            }}>Oldest First</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+    )
   }
 }
 

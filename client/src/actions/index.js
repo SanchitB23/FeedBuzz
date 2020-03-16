@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {FETCH_SURVEY_DETAILS, FETCH_SURVEYS, FETCH_USER} from "../utils/actionTypes";
+import {FETCH_CONTACT_US_DATA, FETCH_SURVEY_DETAILS, FETCH_SURVEYS, FETCH_USER} from "../utils/actionTypes";
 
 export const fetchUser = () => async (dispatch) => {
   const res = await axios.get('/api/current_user');
@@ -43,17 +43,14 @@ export const updateUserInfo = data => async dispatch => {
   console.log("actions,user info res", res);
   dispatch({type: FETCH_USER, payload: res.data})
 };
-/*
-export const fetchUser = () => {
-  return function (dispatch) {
 
-    axios.get('/api/current_user').then(
-        res =>
-            dispatch({
-              type: FETCH_USER,
-              payload: res
-            })
-    )
-  };
+export const sendContactUsInfo = data => async dispatch => {
+  console.log("Contact Us TEst", data);
+  await axios.post('/api/contact-us', data)
 };
-*/
+
+export const getContactUsInfo = () => async dispatch => {
+  const res = await axios.get('/api/contact-us');
+  console.log("get Contact actions res", res);
+  dispatch({type: FETCH_CONTACT_US_DATA, payload: res.data})
+};

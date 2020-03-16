@@ -7,6 +7,7 @@ const {cookieKey} = require("./config/keys");
 const {mongoURI} = require("./config/keys");
 require("./models/User"); //Loads the config
 require('./models/Survey');
+require('./models/ContactUs');
 require("./services/passport");
 
 mongoose.connect(mongoURI, {useNewUrlParser: true})
