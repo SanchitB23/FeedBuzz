@@ -21,7 +21,7 @@ module.exports = (app) => {
   //Response Get Request
   app.get('/api/surveys/response/:choice', (req, res) => {
     console.log("something");
-    res.redirect('/surveys/response'); //info Working in PROD
+    res.status(308).redirect('/surveys/response'); //info Working in PROD
   });
 
   //Create and Save Survey
@@ -44,7 +44,7 @@ module.exports = (app) => {
       await survey.save(); //saves survey to mongoDb
       req.user.credits -= 1; //deducts credits
       const user = await req.user.save(); //saves update done to user
-      res.send(user)
+      res.status(201).send(user)
     } catch (e) {
       res.status(422).send(e);
     }
@@ -108,6 +108,7 @@ module.exports = (app) => {
           }
         })
         .value();
+    result.status(204)
     // result.send({})
     // console.log(event);
   });
@@ -122,7 +123,7 @@ module.exports = (app) => {
           lastResponse: false,
           body: false
         });
-    result.send(userSurveys)
+    result.status(200).send(userSurveys)
   });
 
 //  Get Request for details of One Survey
@@ -133,6 +134,6 @@ module.exports = (app) => {
 
   app.post('/api/survey-delete', requireLogin, async (req, res) => {
     const result = await Survey.deleteOne({_id: req.body.surveyId});
-    res.send(result)
+    res.status(200).send(result)
   })
 };

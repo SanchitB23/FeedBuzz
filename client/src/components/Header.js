@@ -30,7 +30,7 @@ class Header extends Component {
             <StripeWrapper header={true}/>
           </li>,
           <li key="3"><Link className={styles.headerText} to={'/my_profile'}><i
-              className="fas fa-user-tie right"/> {this.props.auth.name}</Link>
+              className="fas fa-user-tie right"/> {this.props.auth.name.split(' ')[0]}</Link>
           </li>,
           <li key='4'><a href="/api/logout"><i className="fa fa-sign-out-alt"/></a></li>
         ]

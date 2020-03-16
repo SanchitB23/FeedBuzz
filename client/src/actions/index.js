@@ -36,6 +36,13 @@ export const deleteSurvey = (surveyId) => async (dispatch) => {
   const res = await axios.get('/api/surveys');
   dispatch({type: FETCH_SURVEYS, payload: res.data})
 };
+
+export const updateUserInfo = data => async dispatch => {
+  console.log("Actions,user info data", data);
+  const res = await axios.post('/api/update_user_data', data);
+  console.log("actions,user info res", res);
+  dispatch({type: FETCH_USER, payload: res.data})
+};
 /*
 export const fetchUser = () => {
   return function (dispatch) {

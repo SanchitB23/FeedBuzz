@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import StripeWrapper from "./StripeWrapper";
 import avatar from "../resources/DevPlaceholderAvatar/avatar_1.png"
 import userFields from "../utils/userFormFieldsHelper";
+import {updateUserInfo} from "../actions";
 
 // todo Less loops more hardcoded iterations due to less data
 function mapStateToProps({auth}) {
@@ -131,15 +132,14 @@ class UserProfilePage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.handleValidation()) console.log("Good");
-    else console.log("Bad")
+    if (this.handleValidation()) {
+      this.props.updateUserInfo(this.state.userData);
+      this.setState({canEdit: false});
+    } else console.log("Bad")
   };
 
   handleOnChange(name, e) {
-    console.log("HandleOn Change", name, e);
-    let userData = this.state.userData;
-    userData[name] = e.target.value;
-    this.setState({userData})
+    this.setState({userData: {...this.state.userData, [name]: e.target.value}})
   }
 
   handleReset() {
@@ -147,24 +147,39 @@ class UserProfilePage extends Component {
     this.setState({canEdit: false, userData: {...this.props.auth}, errors: {}})
   }
 
+// todo refine Validation
   handleValidation() {
     let {userData} = this.state;
     let errors = {};
     let formIsValid = true;
     userFields.map(field => {
-      if (field.name === 'credits' || field.name === 'email') return;
-      if (!userData[field.name]) {
-        formIsValid = false;
-        errors[field.name] = "cannot be empty"
-      }
-      if (typeof userData[field.name] !== 'undefined') {
-        if (field.name !== 'companySignature')
-
-          if (!userData[field.name].match(/^[a-zA-Z]+$/)) {
+      // if (field.name === 'credits' || field.name === 'email') return;
+      if (field.name === 'name') {
+        if (!userData[field.name] || !(userData[field.name].length > 0)) {
+          formIsValid = false;
+          errors["name"] = "cannot be empty"
+        }
+        if (typeof userData[field.name] !== 'undefined') {
+          if (!userData[field.name].match(/^[a-zA-Z ]+$/) && userData[field.name].length > 0) {
             formIsValid = false;
             errors[field.name] = "only Alphabets Allowed"
           }
-      }
+          if (userData[field.name].length > 24) {
+            formIsValid = false;
+            errors["name"] = "Length Should be less than 24 characters"
+          }
+        }
+      } else if (field.name === 'companyName')
+        if (typeof userData[field.name] !== 'undefined') {
+          if (!userData[field.name].match(/^[a-zA-Z-.& ]+$/) && userData[field.name].length > 0) {
+            formIsValid = false;
+            errors[field.name] = "only Alphabets, Dot(.), Ampersand(&) and Dashes(-) Allowed"
+          }
+          if (userData[field.name].length > 24) {
+            formIsValid = false;
+            errors["name"] = "Length Should be less than 24 characters"
+          }
+        }
     });
     this.setState({errors});
     return formIsValid
@@ -172,5 +187,5 @@ class UserProfilePage extends Component {
 }
 
 export default connect(
-    mapStateToProps,
+    mapStateToProps, {updateUserInfo}
 )(UserProfilePage);

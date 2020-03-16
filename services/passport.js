@@ -23,23 +23,23 @@ passport.use('google', new GoogleStrategy({
       callbackURL: '/auth/google/callback',
       proxy: true
     }, async (accessToken, refreshToken, profile, done) => {
-  // console.log(profile.emails[0].value);
-  const existingUser = await User.findOne({googleId: profile.id});
-  if (existingUser && (!existingUser.email || !existingUser.name)) {
-    existingUser.email = profile.emails[0].value;
-    existingUser.name = profile.displayName;
-    existingUser.save()
-  }
-  if (!existingUser) {
-    const user = await new User({
-      googleId: profile.id,
-      name: profile.displayName,
-      email: profile.emails[0].value,
-      createdAt: Date.now()
-    }).save();
-    return done(null, user);
-  }
-  console.log("User Exists");
+      // console.log(profile.emails[0].value);
+      const existingUser = await User.findOne({googleId: profile.id});
+      if (existingUser && (!existingUser.email || !existingUser.name)) {
+        existingUser.email = profile.emails[0].value;
+        existingUser.name = profile.displayName;
+        existingUser.save()
+      }
+      if (!existingUser) {
+        const user = await new User({
+          googleId: profile.id,
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          createdAt: Date.now()
+        }).save();
+        return done(null, user);
+      }
+      console.log("User Exists");
       done(null, existingUser)
     })
 );
