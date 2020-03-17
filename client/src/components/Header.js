@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import StripeWrapper from "./StripeWrapper";
 import styles from "../styles/styles.module.css";
 import assets from "../resources/info";
+import {Dropdown} from "react-bootstrap";
 
 
 function mapStateToProps({auth}) {
@@ -12,13 +13,14 @@ function mapStateToProps({auth}) {
 
 class Header extends Component {
   state = {
-    logoHover: false
+    logoHover: false,
+    showDropdownItems: false,
   };
 
   renderRightContent() {
     switch (this.props.auth) {
       case null: //todo loading animation or something
-        return <li style={{fontSize: '20px'}}><i className={"fa fa-spinner fa-pulse small right"}/>Please Wait</li>;
+        return <li style={{fontSize: '20px'}}><i className={"fas fa-spinner fa-pulse right"}/>Please Wait</li>;
       case false:
         return <li><a href="/auth/google" className={styles.headerText}><i
             className="fab fa-google-plus-g right red-text small"/>Login With</a></li>;
@@ -29,10 +31,20 @@ class Header extends Component {
           }}>
             <StripeWrapper header={true}/>
           </li>,
-          <li key="3"><Link className={styles.headerText} to={'/my_profile'}><i
-              className="fas fa-user-tie right"/> {this.props.auth.name.split(' ')[0]}</Link>
-          </li>,
-          <li key='4'><a href="/api/logout"><i className="fa fa-sign-out-alt"/></a></li>
+          <li key={"3"}>
+            <Dropdown show={this.state.showDropdownItems} onMouseEnter={() => this.setState({showDropdownItems: true})}
+                      onMouseLeave={() => this.setState({showDropdownItems: false})}>
+              <Dropdown.Toggle as="a" id="dropdown-basic" className={styles.headerText}>
+                <i className="fas fa-user-tie left"/> {this.props.auth.name.split(' ')[0]}
+              </Dropdown.Toggle>
+              <Dropdown.Menu alignRight style={{backgroundColor: assets["primary-color"], color: ""}}>
+                <Dropdown.Item as={Link} to={'/my_profile'}><i className="fas fa-user-tie left"/> Your
+                  Profile</Dropdown.Item>
+                <Dropdown.Item as={Link} to={'/admin'}><i className="fas fa-toolbox left"/>Admin</Dropdown.Item>
+                <Dropdown.Item as="a" href="/api/logout"><i className="fa fa-sign-out-alt left"/>Log Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </li>
         ]
     }
   }

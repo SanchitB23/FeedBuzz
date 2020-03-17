@@ -45,7 +45,7 @@ class Footer extends Component {
             <div className="container" style={{alignItems: "center", display: "flex", justifyContent: "space-around"}}>
               <div className="left"><i className="far fa-copyright"/> Copyright of JXBFS</div>
               <div className="center">Major Project 2020</div>
-              <div className="right">V1.2</div>
+              <div className="right">V2.0</div>
             </div>
           </div>
         </footer>

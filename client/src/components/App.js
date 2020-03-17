@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import M from "materialize-css";
+import svg from "../resources/MaintainanceIllus.svg";
 
 
 import Header from "./Header";
@@ -18,6 +19,7 @@ import AboutUsPage from "./AboutUsPage";
 import UserProfilePage from "./UserProfilePage";
 import ContactUsPage from "./ContactUsPage";
 // import TestingPage from "./TestingPage";
+import assets from "../resources/info";
 
 // todo HTML File fix
 
@@ -27,6 +29,17 @@ class App extends Component {
     M.AutoInit() //no use
   }
 
+  maintenancePage = () => (
+      <div className="container">
+        <div className="card">
+          <div style={{display: "flex", flexDirection: 'column', alignItems: "center", padding: "20px 0px"}}>
+            <img src={svg} alt="" height="300" width="300"/>
+            <h4 style={{color: assets["secondary-color-green"]}} className="text-capitalize">Feature under
+              Maintenance</h4>
+          </div>
+        </div>
+      </div>
+  );
 
   render() {
     // console.log(this.props.auth);
@@ -42,6 +55,7 @@ class App extends Component {
             <Route exact path="/about_us" component={AboutUsPage}/>
             <Route exact path="/contact_us" component={ContactUsPage}/>
             <Route exact path="/my_profile" component={UserProfilePage}/>
+            <Route exact path="/admin" component={this.maintenancePage}/>
             {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
             <Route exact={true} path="*/auth_error" component={AuthError}/>
             <Route component={ErrorPage404}/>
