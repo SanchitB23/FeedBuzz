@@ -8,7 +8,8 @@ const userSchema = new Schema({
   createdAt: {type: Date},
   credits: {type: Number, default: 1},
   companyName: {type: String},
-  companySignature: {type: String}
+  companySignature: {type: String},
+  admin: {type: Boolean, default: false}
 });
 
 mongoose.model('users', userSchema); //2 args = loading something in Mongoose (~Post)

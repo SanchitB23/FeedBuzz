@@ -56,6 +56,7 @@ class App extends Component {
             <Route exact path="/contact_us" component={ContactUsPage}/>
             <Route exact path="/my_profile" component={UserProfilePage}/>
             <Route exact path="/admin" component={this.maintenancePage}/>
+            <Route exact path="/terms" component={this.maintenancePage}/>
             {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
             <Route exact={true} path="*/auth_error" component={AuthError}/>
             <Route component={ErrorPage404}/>

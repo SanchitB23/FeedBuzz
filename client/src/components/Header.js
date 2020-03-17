@@ -40,7 +40,9 @@ class Header extends Component {
               <Dropdown.Menu alignRight style={{backgroundColor: assets["primary-color"], color: ""}}>
                 <Dropdown.Item as={Link} to={'/my_profile'}><i className="fas fa-user-tie left"/> Your
                   Profile</Dropdown.Item>
-                <Dropdown.Item as={Link} to={'/admin'}><i className="fas fa-toolbox left"/>Admin</Dropdown.Item>
+                {this.props.auth.admin ? (
+                    <Dropdown.Item as={Link} to={'/admin'}><i className="fas fa-toolbox left"/>Admin</Dropdown.Item>
+                ) : ""}
                 <Dropdown.Item as="a" href="/api/logout"><i className="fa fa-sign-out-alt left"/>Log Out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

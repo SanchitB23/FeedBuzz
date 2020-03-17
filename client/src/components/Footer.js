@@ -27,7 +27,7 @@ class Footer extends Component {
               {/*temp Change to Link tag*/}
               <li><Link className="grey-text text-lighten-3" to={'/about_us'}>About Us</Link></li>
               <li><Link className="grey-text text-lighten-3" to={'/contact_us'}>Contact Us</Link></li>
-              <li><a className="grey-text text-lighten-3" href="#">Terms and Conditions</a></li>
+              <li><Link className="grey-text text-lighten-3" to={'/terms'}>Terms and Conditions</Link></li>
             </ul>
             <button className="btn-flat btn-large grey lighten-2" onClick={() => this.scrollToTop()}><i
                 className="fa fa-long-arrow-alt-up"/> Back
@@ -35,10 +35,12 @@ class Footer extends Component {
             </button>
             <ul>
               {/*temp Change to Link tag*/}
-              <li><a className="grey-text text-lighten-3" href="#"><i className="fab fa-facebook-f"/> Facebook</a>
+              <li><Link className="grey-text text-lighten-3" to={'/social'}><i className="fab fa-facebook-f"/> Facebook</Link>
               </li>
-              <li><a className="grey-text text-lighten-3" href="#"><i className="fab fa-twitter"/> Twitter</a></li>
-              <li><a className="grey-text text-lighten-3" href="#"><i className="fab fa-instagram"/> Instagram</a></li>
+              <li><Link className="grey-text text-lighten-3" to={'/social'}><i
+                  className="fab fa-twitter"/> Twitter</Link></li>
+              <li><Link className="grey-text text-lighten-3" to={'/social'}><i className="fab fa-instagram"/> Instagram</Link>
+              </li>
             </ul>
           </div>
           <div className="footer-copyright">
