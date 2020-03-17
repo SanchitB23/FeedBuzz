@@ -20,6 +20,7 @@ import UserProfilePage from "./UserProfilePage";
 import ContactUsPage from "./ContactUsPage";
 // import TestingPage from "./TestingPage";
 import assets from "../resources/info";
+import TermsAndConditionsPage from "./TermsAndConditionsPage";
 
 // todo HTML File fix
 
@@ -56,7 +57,7 @@ class App extends Component {
             <Route exact path="/contact_us" component={ContactUsPage}/>
             <Route exact path="/my_profile" component={UserProfilePage}/>
             <Route exact path="/admin" component={this.maintenancePage}/>
-            <Route exact path="/terms" component={this.maintenancePage}/>
+            <Route exact path="/terms" component={TermsAndConditionsPage}/>
             {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
             <Route exact={true} path="*/auth_error" component={AuthError}/>
             <Route component={ErrorPage404}/>
