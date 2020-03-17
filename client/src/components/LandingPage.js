@@ -49,17 +49,25 @@ function LandingPage() { //idea if already logged in then redirect to dashboard
                   // console.log(index);
                   if (index % 2 === 0) return (
                       <div className="card grey lighten-5 horizontal"
-                           style={{justifyContent: "space-around", alignItems: "center"}}>
+                           style={{justifyContent: "space-around", flexDirection: "row", alignItems: "center"}}>
                         <div className="card-image" style={{margin: "10px 0px"}}>{card.illus}</div>
                         <h4 className="card-content" contentEditable={"plaintext-only"}
-                            style={{color: "#57B894", fontFamily: "Comic Sans MS", textAlign: "center"}}>{card.text}</h4>
+                            style={{
+                              color: "#57B894",
+                              fontFamily: "Comic Sans MS",
+                              textAlign: "center"
+                            }}>{card.text}</h4>
                       </div>
                   );
                   return (
                       <div className="card grey lighten-5 horizontal"
-                           style={{justifyContent: "space-around", alignItems: "center"}}>
+                           style={{justifyContent: "space-around", flexDirection: "row", alignItems: "center"}}>
                         <h4 className="card-content" contentEditable={"plaintext-only"}
-                            style={{color: "#BB77B8", fontFamily: "Comic Sans MS", textAlign: "center"}}>{card.text}</h4>
+                            style={{
+                              color: "#BB77B8",
+                              fontFamily: "Comic Sans MS",
+                              textAlign: "center"
+                            }}>{card.text}</h4>
                         <div className="card-image" style={{margin: "10px 0px"}}>{card.illus}</div>
                       </div>
                   )

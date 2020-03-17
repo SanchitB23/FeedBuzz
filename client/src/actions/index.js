@@ -46,7 +46,7 @@ export const updateUserInfo = data => async dispatch => {
 
 export const sendContactUsInfo = data => async dispatch => {
   console.log("Contact Us TEst", data);
-  await axios.post('/api/contact-us', data)
+  await axios.post('/api/contact-us', data);
 };
 
 export const getContactUsInfo = () => async dispatch => {

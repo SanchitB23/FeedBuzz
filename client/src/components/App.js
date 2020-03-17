@@ -16,10 +16,10 @@ import Footer from "./Footer";
 import SurveyDetail from "./surveys/SurveyDetail"
 import AboutUsPage from "./AboutUsPage";
 import UserProfilePage from "./UserProfilePage";
+import ContactUsPage from "./ContactUsPage";
 // import TestingPage from "./TestingPage";
 
 // todo HTML File fix
-const ContactUs = () => <div>Contact US</div>;
 
 class App extends Component {
   componentDidMount() {
@@ -40,7 +40,7 @@ class App extends Component {
             <Route exact path="/surveys/response" component={FeedbackResponsePage}/>
             <Route exact path="/surveys/survey_detail/:surveyId" component={SurveyDetail}/>
             <Route exact path="/about_us" component={AboutUsPage}/>
-            <Route exact path="/contact_us" component={ContactUs}/>
+            <Route exact path="/contact_us" component={ContactUsPage}/>
             <Route exact path="/my_profile" component={UserProfilePage}/>
             {/*<Route exact path="/test" component={TestingPage}/> /!* temp*!/*/}
             <Route exact={true} path="*/auth_error" component={AuthError}/>
