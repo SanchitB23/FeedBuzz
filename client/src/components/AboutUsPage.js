@@ -5,31 +5,43 @@ import Logo from "../resources/Logo/FeedBuzz - Logo - 200px.png";
 const devList = [
   {
     "name": "Sanchit Bhatnagar",
-    "designation": "God",
-    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-    "email": "email@email.com"
+    "designation": "MERN Stack Developer",
+    "description": "Developed Backend Server, Implemented API Management And Database Setup",
+    "email": "email@email.com",
+    "twitter": "email@email.com",
+    "facebook": "email@email.com",
+    "github": "https://github.com/SanchitB23",
   },
   {
-    "name": "S Bhatnagar",
-    "designation": "God",
-    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-    "email": "email@email.com"
+    "name": "Aashish Kumar Singh",
+    "designation": "Front-End Developer",
+    "description": "Implemented ReactJs for dynamic Web Development",
+    "email": "email@email.com",
+    "twitter": "email@email.com",
+    "facebook": "email@email.com",
+    "github": "email@email.com",
   },
   {
-    "name": "Sanchit B",
-    "designation": "God",
-    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-    "email": "email@email.com"
+    "name": "Amar Singh",
+    "designation": "Front-End Developer",
+    "description": "Used HTML and CSS for implementation of Design Modules",
+    "email": "email@email.com",
+    "twitter": "email@email.com",
+    "facebook": "email@email.com",
+    "github": "email@email.com",
   },
   {
-    "name": "S B",
-    "designation": "God",
-    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-    "email": "email@email.com"
+    "name": "Lalit Joshi",
+    "designation": "UI/UX Designer",
+    "description": "Designed User Interfaces and High-End Mock-ups with Pictorial Illustrations",
+    "email": "email@email.com",
+    "twitter": "email@email.com",
+    "facebook": "email@email.com",
+    "github": "email@email.com",
   },
 ];
 
-const AboutUsPage = (props) => (
+const AboutUsPage = () => (
     <div className="">
       <h5 className="font-italic font-weight-bold" style={{paddingLeft: "10%", paddingBottom: ""}}><u>Meet the
         Developers</u></h5>
@@ -47,15 +59,15 @@ const AboutUsPage = (props) => (
                   <p>{dev.description}</p>
                 </div>
                 <div class="card-action"
-                     style={{display: "flex", "flexDirection": "row", justifyContent: "space-evenly"}}>
+                     style={{display: "flex", "flexDirection": "row", justifyContent: "space-around"}}>
                   <a href={`mailto:${dev.email}`}><i class="far fa-envelope blue-grey-text"
                                                      style={{fontSize: "1.5rem"}}/></a>
-                  <a href={`mailto:${dev.email}`}> <i class="fab fa-twitter light-blue-text"
-                                                      style={{fontSize: "1.5rem"}}/> </a>
-                  <a href={`mailto:${dev.email}`}> <i class="fab fa-facebook text-darken-4 blue-text"
-                                                      style={{fontSize: "1.5rem"}}/> </a>
-                  <a href={`mailto:${dev.email}`}><i class="fab fa-github text-darken-4 grey-text"
-                                                     style={{fontSize: "1.5rem"}}/> </a>
+                  <a href={dev.twitter}> <i class="fab fa-twitter light-blue-text"
+                                            style={{fontSize: "1.5rem"}}/> </a>
+                  <a href={dev.facebook}> <i class="fab fa-facebook text-darken-4 blue-text"
+                                             style={{fontSize: "1.5rem"}}/> </a>
+                  <a href={dev.github}><i class="fab fa-github text-darken-4 grey-text"
+                                          style={{fontSize: "1.5rem"}}/> </a>
                 </div>
               </div>
           ))
